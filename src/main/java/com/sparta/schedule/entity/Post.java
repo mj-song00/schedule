@@ -11,7 +11,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,6 +31,9 @@ public class Post {
     private LocalDateTime created_at;
     @LastModifiedDate
     private LocalDateTime updated_at;
+
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments;
 
     public Post(PostRequestDto requestDto) { //데이터 저장
         this.password= requestDto.getPassword();
