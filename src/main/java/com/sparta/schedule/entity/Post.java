@@ -1,5 +1,6 @@
 package com.sparta.schedule.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.schedule.dto.PostRequestDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,10 +20,13 @@ import java.util.List;
 @Setter
 @Table(name ="post")
 @NoArgsConstructor
+
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    @Column(name = "POST_ID")
+    private Integer postId;
+
     private String password;
     private String username;
     private String title;
@@ -32,8 +37,14 @@ public class Post {
     @LastModifiedDate
     private LocalDateTime updated_at;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "post")
-    private List<Comment> comments;
+    private List<Comment> commentList = new ArrayList<>();
+
+    public void addCommentList(Comment comment){
+        this.commentList.add(comment);
+        comment.setPost(this);
+    }
 
     public Post(PostRequestDto requestDto) { //데이터 저장
         this.password= requestDto.getPassword();

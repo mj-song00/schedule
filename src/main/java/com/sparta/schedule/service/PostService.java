@@ -55,7 +55,7 @@ public class PostService {
 
     private Post findPost(int id) {
         return postRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("선택한 메모는 존재하지 않습니다.")
+                new IllegalArgumentException("선택한 post는 존재하지 않습니다.")
         );
     }
 }
