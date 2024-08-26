@@ -54,9 +54,6 @@ public class CommentService {
     }
 
 
-
-
-
     private Post findPost(int postId) {
         return postRepository.findById(postId).orElseThrow(() ->
                 new IllegalArgumentException("선택한 post는 존재하지 않습니다.")

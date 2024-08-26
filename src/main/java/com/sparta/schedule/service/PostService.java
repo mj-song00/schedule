@@ -4,16 +4,19 @@ import com.sparta.schedule.dto.PostRequestDto;
 import com.sparta.schedule.dto.PostResponseDto;
 import com.sparta.schedule.entity.Post;
 import com.sparta.schedule.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 @Service
 public class PostService {
 
+
     private final PostRepository postRepository;
 
+    @Autowired
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
@@ -28,9 +31,10 @@ public class PostService {
         return postResponseDto;
     }
 
-    public List<Post> getPosts(){
-        List<Post> posts = postRepository.findAll();
-        return posts;
+    public Page<Post> getPosts(Pageable pageable){
+
+        return postRepository.findAllPostByOrderByUpdatedAtDesc(pageable);
+
     }
 
     public PostResponseDto getPostById(int id){

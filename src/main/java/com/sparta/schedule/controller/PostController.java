@@ -4,9 +4,10 @@ import com.sparta.schedule.dto.PostRequestDto;
 import com.sparta.schedule.dto.PostResponseDto;
 import com.sparta.schedule.entity.Post;
 import com.sparta.schedule.service.PostService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/post")
@@ -23,8 +24,12 @@ public class PostController {
     }
 
     @GetMapping("")
-    public List<Post> getAllPosts(){
-        return this.postService.getPosts();
+    public Page<Post> getPosts(
+            @RequestParam(defaultValue ="0") int page,
+            @RequestParam(defaultValue ="10") int size) {
+
+        Pageable pageable = PageRequest.of(page,size);
+        return this.postService.getPosts(pageable);
     }
 
     @GetMapping("/{id}")

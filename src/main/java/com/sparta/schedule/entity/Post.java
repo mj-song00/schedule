@@ -33,9 +33,9 @@ public class Post {
     private String contents;
 
     @CreatedDate
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
     @LastModifiedDate
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @JsonIgnore
     @OneToMany(mappedBy = "post")
@@ -51,14 +51,14 @@ public class Post {
         this.title = requestDto.getTitle();
         this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
-        this.created_at = LocalDateTime.now();
-        this.updated_at = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     public void update(PostRequestDto requestDto){
         this.title = requestDto.getTitle();
         this.contents = requestDto.getContents();
-        this.updated_at = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
 }
