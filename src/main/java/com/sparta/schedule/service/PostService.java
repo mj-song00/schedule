@@ -31,9 +31,9 @@ public class PostService {
         return postResponseDto;
     }
 
-    public Page<Post> getPosts(Pageable pageable){
+    public Page<PostResponseDto> getPosts(Pageable pageable){
 
-        return postRepository.findAllPostByOrderByUpdatedAtDesc(pageable);
+        return postRepository.findAllPostsWithCommentCount(pageable);
 
     }
 

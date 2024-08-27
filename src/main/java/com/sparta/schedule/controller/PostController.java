@@ -2,7 +2,6 @@ package com.sparta.schedule.controller;
 
 import com.sparta.schedule.dto.PostRequestDto;
 import com.sparta.schedule.dto.PostResponseDto;
-import com.sparta.schedule.entity.Post;
 import com.sparta.schedule.service.PostService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +23,7 @@ public class PostController {
     }
 
     @GetMapping("")
-    public Page<Post> getPosts(
+    public Page<PostResponseDto> getPosts(
             @RequestParam(defaultValue ="0") int page,
             @RequestParam(defaultValue ="10") int size) {
 
