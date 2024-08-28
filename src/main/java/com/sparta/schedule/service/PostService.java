@@ -30,11 +30,11 @@ public class PostService {
     }
 
     public PostResponseDto create(int userId, PostRequestDto requestDto) {
+        User user = findUser(userId);
         Post post = new Post(requestDto);
+        post.setUser(user);
 
         Post savePost = postRepository.save(post);
-
-
 
         PostResponseDto postResponseDto = new PostResponseDto(savePost, userId);
 
@@ -48,9 +48,10 @@ public class PostService {
 
     }
 
-    public PostResponseDto getPostById(int userId){
-       return new PostResponseDto(findPost(userId), userId);
+    public PostResponseDto getPostById(int postId){
+        Post post = findPost(postId);
 
+        return new PostResponseDto(post);
     }
 
     @Transactional

@@ -31,9 +31,9 @@ public class PostController {
         return postService.getPosts(pageable);
     }
 
-    @GetMapping("/{id}")
-    public PostResponseDto getPost(@PathVariable int id){
-        return this.postService.getPostById(id);
+    @GetMapping("/{postId}")
+    public PostResponseDto getPost(@PathVariable int postId){
+        return this.postService.getPostById(postId);
     }
 
     @PutMapping("/{postId}/{userId}")
