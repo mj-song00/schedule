@@ -1,6 +1,5 @@
 package com.sparta.schedule.entity;
 
-import com.sparta.schedule.dto.PostRequestDto;
 import com.sparta.schedule.dto.UserRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,8 +9,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Getter
@@ -31,9 +29,6 @@ public class User {
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
-
-    @OneToMany(mappedBy = "user")
-    private List<UserPosts> upList = new ArrayList<>();
 
 
     public User(UserRequestDto requestDto) { //데이터 저장

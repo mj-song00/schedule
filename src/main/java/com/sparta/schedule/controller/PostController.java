@@ -17,9 +17,9 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("")
-    public PostResponseDto createPost(@RequestBody PostRequestDto requestDto){
-        return postService.create(requestDto);
+    @PostMapping("/{userId}")
+    public PostResponseDto createPost(@PathVariable int userId, @RequestBody PostRequestDto requestDto){
+        return postService.create(userId, requestDto);
     }
 
     @GetMapping("")
@@ -36,9 +36,9 @@ public class PostController {
         return this.postService.getPostById(id);
     }
 
-    @PutMapping("/{id}")
-    public PostResponseDto updatePost(@PathVariable int id, @RequestBody PostRequestDto requestDto){
-        return postService.updatePost(id, requestDto);
+    @PutMapping("/{postId}/{userId}")
+    public PostResponseDto updatePost(@PathVariable int postId, @PathVariable int userId, @RequestBody PostRequestDto requestDto){
+        return postService.updatePost(postId, userId, requestDto);
     }
 
     @DeleteMapping("/{id}")

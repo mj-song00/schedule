@@ -28,4 +28,7 @@ create Table `user_posts`(
                         upId int not null primary key auto_increment,
                         userId int not null,
                         postId int not null,
+                        manager varchar(20),
+                        createdAt date not null,
+                        updatedAt date not null,
 )

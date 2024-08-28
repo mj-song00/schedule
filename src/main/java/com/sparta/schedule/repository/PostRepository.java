@@ -12,11 +12,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
+
   @Query("SELECT new com.sparta.schedule.dto.PostResponseDto(" +
-          "p.title, p.contents, COUNT(c), p.createdAt, p.updatedAt, p.username, p.postId) " +
+          "p.title, p.contents, COUNT(c), p.createdAt, p.updatedAt, p.postId, COALESCE(p.user.userId, 0)) " +
           "FROM Post p " +
           "LEFT JOIN p.commentList c " +
-          "GROUP BY p.postId, p.title, p.contents, p.createdAt, p.updatedAt, p.username " +
+          "GROUP BY p.postId, p.title, p.contents, p.createdAt, p.updatedAt, p.user.userId " +
           "ORDER BY p.updatedAt DESC")
   Page<PostResponseDto> findAllPostsWithCommentCount(Pageable pageable);
 }

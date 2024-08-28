@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,4 +32,12 @@ public class UserPosts {
     @ManyToOne
     @JoinColumn(name = "POST_ID")
     private Post post;
+
+
+    public UserPosts(User user, Post post) {
+        this.user = user;
+        this.post = post;
+        this.createdAt =  LocalDateTime.now();
+        this.updatedAt =  LocalDateTime.now();
+    }
 }

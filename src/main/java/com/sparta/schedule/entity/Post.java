@@ -20,7 +20,6 @@ import java.util.List;
 @Setter
 @Table(name ="post")
 @NoArgsConstructor
-
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,16 +34,20 @@ public class Post {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    @ManyToOne
+    private User user;
+
     @JsonIgnore
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> commentList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "post")
-    private List<UserPosts> upList = new ArrayList<>();
+//    public Post(PostRequestDto requestDto) {
+//        this.title = requestDto.getTitle();
+//        this.contents = requestDto.getContents();
+//    }
 
 
-
-    public void addCommentList(Comment comment){
+    public void addCommentList(Comment comment) {
         this.commentList.add(comment);
         comment.setPost(this);
     }
@@ -61,5 +64,4 @@ public class Post {
         this.contents = requestDto.getContents();
         this.updatedAt = LocalDateTime.now();
     }
-
 }
