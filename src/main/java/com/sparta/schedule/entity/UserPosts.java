@@ -19,19 +19,16 @@ public class UserPosts {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer upId;
 
-    private Integer userId;
-    private Integer postId;
-
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "postId")
+    @JoinColumn(name = "POST_ID")
     private Post post;
 }
