@@ -27,8 +27,6 @@ public class Post {
     @Column(name = "POST_ID")
     private Integer postId;
 
-    private String password;
-    private String username;
     private String title;
     private String contents;
 
@@ -41,15 +39,18 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> commentList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "post")
+    private List<UserPosts> upList = new ArrayList<>();
+
+
+
     public void addCommentList(Comment comment){
         this.commentList.add(comment);
         comment.setPost(this);
     }
 
     public Post(PostRequestDto requestDto) { //데이터 저장
-        this.password= requestDto.getPassword();
         this.title = requestDto.getTitle();
-        this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();

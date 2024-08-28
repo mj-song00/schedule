@@ -21,7 +21,6 @@ public class PostResponseDto {
         this.title = post.getTitle();
         this.createdAt = post.getCreatedAt();
         this.updatedAt = post.getUpdatedAt();
-        this.username = post.getUsername();
     }
 
     public PostResponseDto(String title, String contents, long commentCount, LocalDateTime createdAt, LocalDateTime updatedAt, String username , int postId){

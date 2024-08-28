@@ -28,7 +28,7 @@ public class PostController {
             @RequestParam(defaultValue ="10") int size) {
 
         Pageable pageable = PageRequest.of(page,size);
-        return this.postService.getPosts(pageable);
+        return postService.getPosts(pageable);
     }
 
     @GetMapping("/{id}")
@@ -38,7 +38,7 @@ public class PostController {
 
     @PutMapping("/{id}")
     public PostResponseDto updatePost(@PathVariable int id, @RequestBody PostRequestDto requestDto){
-        return this.postService.updatePost(id, requestDto);
+        return postService.updatePost(id, requestDto);
     }
 
     @DeleteMapping("/{id}")
